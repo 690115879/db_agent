@@ -18,9 +18,8 @@ type IpReporterRequest struct {
 }
 
 type IpReporterResponse struct {
-	Code global.HttpResponseCode `json:"code"`
-	Msg  string                  `json:"msg"`
-	Data string                  `json:"data,omitempty"`
+	global.HttpResponse
+	Data string `json:"data,omitempty"`
 }
 
 type IpReporterController struct {
@@ -32,13 +31,17 @@ func (c *IpReporterController) Get() *IpReporterResponse {
 	ip := module.GetIP()
 	if ip == nil {
 		return &IpReporterResponse{
-			Code: global.DbError,
-			Msg:  "GetIP error ip == nil",
+			HttpResponse: global.HttpResponse{
+				Code: global.DbError,
+				Msg:  "GetIP error ip == nil",
+			},
 		}
 	}
 	return &IpReporterResponse{
-		Code: global.OK,
-		Msg:  string(global.OKMsg),
+		HttpResponse: global.HttpResponse{
+			Code: global.OK,
+			Msg:  global.OKMsg,
+		},
 		Data: ip.IP,
 	}
 }
@@ -47,22 +50,28 @@ func (c *IpReporterController) Get() *IpReporterResponse {
 func (c *IpReporterController) Put(req *IpReporterRequest) *IpReporterResponse {
 	if req == nil || req.Ip == nil {
 		return &IpReporterResponse{
-			Code: global.InputError,
-			Msg:  string(global.InputErrorMsg),
+			HttpResponse: global.HttpResponse{
+				Code: global.InputError,
+				Msg:  global.InputErrorMsg,
+			},
 		}
 	}
 	module := module.IpReporterModule{}
 	ip := module.SetIP(*req.Ip)
 	if ip == nil {
 		return &IpReporterResponse{
-			Code: global.DbError,
-			Msg:  "SetIp Error ip == nil",
+			HttpResponse: global.HttpResponse{
+				Code: global.DbError,
+				Msg:  "SetIp Error ip == nil",
+			},
 		}
 	}
 
 	return &IpReporterResponse{
-		Code: global.OK,
-		Msg:  string(global.OKMsg),
+		HttpResponse: global.HttpResponse{
+			Code: global.OK,
+			Msg:  global.OKMsg,
+		},
 		Data: ip.IP,
 	}
 }

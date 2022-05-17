@@ -16,3 +16,8 @@ const (
 	OKMsg         HttpResponseMsg = "ok"
 	InputErrorMsg                 = "input error"
 )
+
+type HttpResponse struct {
+	Code HttpResponseCode `json:"code"`
+	Msg  HttpResponseMsg  `json:"msg"`
+}
