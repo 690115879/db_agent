@@ -46,8 +46,8 @@ func (c *IpReporterController) Get() *IpReporterResponse {
 	}
 }
 
-// Put http://localhost:12580/ip_reporter
-func (c *IpReporterController) Put(req *IpReporterRequest) *IpReporterResponse {
+// Post http://localhost:12580/ip_reporter
+func (c *IpReporterController) Post(req *IpReporterRequest) *IpReporterResponse {
 	if req == nil || req.Ip == nil {
 		return &IpReporterResponse{
 			HttpResponse: global.HttpResponse{
