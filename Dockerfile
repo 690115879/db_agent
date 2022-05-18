@@ -26,5 +26,5 @@ RUN chmod +x /root/docker-entrypoint.sh
 
 ENTRYPOINT  ["/root/docker-entrypoint.sh"]
 
-# docker run -itd push_server --restart=always
+# docker run -itd -v ./data/data.db:/data/data.db db_agent --restart=always
 CMD ["/root/db_agent"]
