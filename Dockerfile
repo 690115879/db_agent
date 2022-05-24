@@ -31,6 +31,6 @@ RUN chmod +x /root/docker-entrypoint.sh
 ENTRYPOINT  ["/root/docker-entrypoint.sh"]
 
 # docker build --network=host -t db_agent . --no-cache
-# docker run -itd -v ./data/data.db:/data/data.db --name=DB_AGENT --restart=always db_agent
+# docker run -itd -v /home/pi/data/data.db:/data/data.db --name=DB_AGENT --restart=always db_agent
 # docker run -it -v /home/pi/data/data.db:/data/data.db  db_agent
 CMD ["/root/db_agent"]
