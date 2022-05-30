@@ -49,7 +49,7 @@ func (c *PushServerConfigController) Post(config *PushServerConfigSetConfigReq) 
 		DingdingUrl:    config.DingdingUrl,
 		DingdingSecret: config.DingdingSecret,
 	})
-	if ret != nil {
+	if ret == nil {
 		return &PushServerConfigResponse{
 			HttpResponse: global.HttpResponse{
 				Code: global.DbError,
